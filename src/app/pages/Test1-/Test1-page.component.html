@@ -17,7 +17,12 @@
 <div style=" color: rgb(136, 154, 205);">
 <ul style="position: absolute; left: 10px;">
     @for (item of postClientes; track $index) {
-        <li>{{item.IDcliente}}, {{item.Nombre}}</li>
+        <li>
+            <a>
+            {{item.IDcliente}}, {{item.Nombre}}
+
+            </a>
+        </li>
     }
 </ul>
 </div>

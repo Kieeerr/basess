@@ -40,10 +40,10 @@ async getPostDetalleFactura() {
   console.log(this.postsDetalleFactura);
 }
 async getpostMetodoDePago() {
-  this.postMetodoDePago = await this.httpService.GetMetodoDePago()
+  this.postMetodoDePago = await this.httpService.GetMetodoDePago();
 }
 
 async GetPostVehiculos(){
-  this.postVehiculos = await this.httpService.GetVehiculos()
+  this.postVehiculos = await this.httpService.GetVehiculos();
 }
 }
