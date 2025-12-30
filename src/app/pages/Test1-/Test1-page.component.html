@@ -1,0 +1,58 @@
+<h1>Holaaaaaa</h1>
+<br>
+<br>
+<button (click)="getPostCliente()"> Clientes</button>
+<button (click)="getPostFactura()"> Facturas</button>
+<button (click)="getPostDetalleFactura()">DetalleFactura</button>
+<button (click)="getpostMetodoDePago()">Metodos</button>
+<button (click)="GetPostVehiculos()" > Vehiculos</button>
+<style>
+    ul{
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+
+<div style=" color: rgb(136, 154, 205);">
+<ul style="position: absolute; left: 10px;">
+    @for (item of postClientes; track $index) {
+        <li>{{item.IDcliente}}, {{item.Nombre}}</li>
+    }
+</ul>
+</div>
+
+<div style="color: chocolate;">
+    <ul style="position:absolute; left: 110px;">
+           @for (item of postFacturas; track $index){
+            <li>{{item.IDcliente}}, {{item.Fecha}}</li>
+        }
+    </ul>
+</div>
+
+<ul style="position: absolute;left: 350px;">
+    @for (item of postsDetalleFactura; track $index) {
+        <li>
+            {{item.IDfacturas}}, {{item.Descripcion}}
+        </li>
+
+    }
+</ul>
+
+<ul style="background-color: burlywood; position: absolute; border-radius: 10px; left: 360px; top: 60px; justify-content:center ;">
+    @for (item of postMetodoDePago; track $index){
+    <li >
+        {{item.IDmpd}}, {{item.MetododePago}}
+    </li>
+}
+</ul>
+
+<ul style="color: blueviolet; right: 100px; position: absolute;">
+    
+    @for (item of postVehiculos; track $index) {
+    <li>
+        {{item.IDvehiculo}}, {{item.Modelo}}
+    </li>
+    }
+
+</ul>
