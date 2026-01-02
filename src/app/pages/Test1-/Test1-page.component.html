@@ -18,7 +18,7 @@
 <ul style="position: absolute; left: 10px;">
     @for (item of postClientes; track $index) {
         <li>
-            <a>
+            <a (click)="goToCliente(item.IDcliente)" style="cursor:pointer; color:inherit; text-decoration:none;">
             {{item.IDcliente}}, {{item.Nombre}}
 
             </a>
@@ -44,7 +44,7 @@
     }
 </ul>
 
-<ul style="background-color: burlywood; position: absolute; border-radius: 10px; left: 360px; top: 60px; justify-content:center ;">
+<ul style="background-color: burlywood; position: absolute; border-radius: 10px; left: 360px; top: 60px; justify-content:center">
     @for (item of postMetodoDePago; track $index){
     <li >
         {{item.IDmpd}}, {{item.MetododePago}}

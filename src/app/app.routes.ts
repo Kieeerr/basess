@@ -13,10 +13,10 @@ export const routes: Routes = [
     {path: 'dragonball',component: DragonballPageComponent}, 
     {path: 'dragonball-super',component: DragonballSuperPageComponent},  
     {path: 'Test1',component: Test1PageComponent},
-    {path: 'cliente/Cdetalle', component: ClienteDetallesComponent },
+    {path: 'cliente/Cdetalle/:id', component: ClienteDetallesComponent },
     {path: '**',redirectTo: ''},
 
 
     
    
-];
+];  

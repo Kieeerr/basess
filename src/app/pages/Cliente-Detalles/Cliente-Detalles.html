@@ -1,3 +1,14 @@
 
-
-<p>Cliente-Detalles works!</p>,
+<div *ngIf="loading">Cargando cliente...</div>
+<div *ngIf="!loading && error">{{error}}</div>
+<div *ngIf="!loading && client">
+	<h2>Cliente {{client.IDcliente}}</h2>
+	<ul>
+		<li><strong>Nombre:</strong> {{client.Nombre}}</li>
+		<li><strong>Apellido:</strong> {{client.apellido}}</li>
+		<li><strong>Correo:</strong> {{client.Correo}}</li>
+		<li><strong>Teléfono:</strong> {{client.Telefono}}</li>
+		<li><strong>Fecha Nacimiento:</strong> {{client.Fecha_Nacimiento}}</li>
+	</ul>
+</div>
+    

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
@@ -20,8 +21,12 @@ postsDetalleFactura: any ;
 postMetodoDePago: any;
 postVehiculos: any;
 
+constructor(private httpService: HttpService, private router: Router) { }
 
-constructor(private httpService: HttpService) { }
+goToCliente(id: any) {
+  if (!id) return;
+  this.router.navigate(['/cliente/Cdetalle', id]);
+}
 
 
 
