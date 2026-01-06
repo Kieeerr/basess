@@ -1,0 +1,25 @@
+<h1>Formulario De Clientes</h1>,
+ 
+<form [formGroup]="ClientesForm" (ngSubmit)="handleSubmit()">
+    <fieldset>
+        <label>Nombre</label>
+        <input type="text" formControlName="Nombre" id="Nombre-Cliente" />
+    </fieldset>
+    <fieldset>
+        <label>Apellido</label>
+        <input type="text" formControlName="Apellido" id="Apellido" />
+    </fieldset>
+    <fieldset>
+        <label>Correo</label>
+        <input type="text" formControlName="Correo" id="Correo" />
+    </fieldset>
+    <fieldset>
+        <label>Telefono</label>
+        <input type="text" formControlName="Telefono" id="Telefono" />
+    </fieldset>
+    <fieldset>
+        <label>Fecha De Nacimiento</label>
+        <input type="date" formControlName="FechaNacimiento" id="FechaNacimiento" />
+    </fieldset>
+    <button type="submit">Crear usuario</button>
+</form> 

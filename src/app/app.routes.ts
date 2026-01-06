@@ -5,6 +5,7 @@ import { DragonballPageComponent } from './pages/dragonball/dragonball-page.comp
 import { DragonballSuperPageComponent } from './pages/dragonball-super/dragonball-super-page.component';
 import { Test1PageComponent } from './pages/Test1-/Test1-page.component';
 import { ClienteDetallesComponent } from './pages/Cliente-Detalles/Cliente-Detalles';
+import { FormularioComponent } from './pages/Formulario/Formulario.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: 'dragonball-super',component: DragonballSuperPageComponent},  
     {path: 'Test1',component: Test1PageComponent},
     {path: 'cliente/Cdetalle/:id', component: ClienteDetallesComponent },
+    {path: 'Formulario', component: FormularioComponent},
     {path: '**',redirectTo: ''},
 
 
