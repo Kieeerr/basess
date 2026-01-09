@@ -2,10 +2,7 @@
 <br>
 <br>
 <button (click)="getPostCliente()"> Clientes</button>
-<button (click)="getPostFactura()"> Facturas</button>
 <button (click)="getPostDetalleFactura()">DetalleFactura</button>
-<button (click)="getpostMetodoDePago()">Metodos</button>
-<button (click)="GetPostVehiculos()" > Vehiculos</button>
 <style>
     ul{
         font-size: 12px;
@@ -44,20 +41,5 @@
     }
 </ul>
 
-<ul style="background-color: burlywood; position: absolute; border-radius: 10px; left: 360px; top: 60px; justify-content:center">
-    @for (item of postMetodoDePago; track $index){
-    <li >
-        {{item.IDmpd}}, {{item.MetododePago}}
-    </li>
-}
-</ul>
 
-<ul style="color: blueviolet; right: 100px; position: absolute;">
-    
-    @for (item of postVehiculos; track $index) {
-    <li>
-        {{item.IDvehiculo}}, {{item.Modelo}}
-    </li>
-    }
 
-</ul>

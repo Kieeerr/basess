@@ -18,8 +18,6 @@ export class Test1PageComponent {
 postFacturas: any ;
 postClientes: any ;
 postsDetalleFactura: any ;
-postMetodoDePago: any;
-postVehiculos: any;
 
 constructor(private httpService: HttpService, private router: Router) { }
 
@@ -30,25 +28,16 @@ goToCliente(id: any) {
 
 
 
-async getPostFactura() { 
-  this.postFacturas = await this.httpService.GetFacturas();
-  console.log(this.postFacturas);
-};
+
 
 async getPostCliente() {
-  this.postClientes = await this.httpService.GetCliente();
+  this.postClientes = await this.httpService.ObtenerClientes();
   console.log(this.postClientes);
 }
 
 async getPostDetalleFactura() {
-  this.postsDetalleFactura = await this.httpService.GetDetalleFactura();
+  this.postsDetalleFactura = await this.httpService.ObtenerDetalleFactura();
   console.log(this.postsDetalleFactura);
 }
-async getpostMetodoDePago() {
-  this.postMetodoDePago = await this.httpService.GetMetodoDePago();
-}
-
-async GetPostVehiculos(){
-  this.postVehiculos = await this.httpService.GetVehiculos();
-}
+// Eliminadas llamadas a GetMetodoDePago y GetVehiculos (funcionalidades no esenciales)
 }

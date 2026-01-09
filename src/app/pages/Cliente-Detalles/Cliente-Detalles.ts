@@ -33,8 +33,8 @@ export class ClienteDetallesComponent implements OnInit {
     }
 
     try {
-      const result: any = this.httpService.GetClienteById(id);
-      console.log('GetClienteById returned:', result);
+      const result: any = this.httpService.ObtenerClientePorId(id);
+      console.log('ObtenerClientePorId returned:', result);
 
       let data: any;
       if (result && typeof result.subscribe === 'function') {
