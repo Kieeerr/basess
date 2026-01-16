@@ -1,0 +1,51 @@
+<h1>Vehículos</h1>
+
+<button (click)="toggleForm()">Nuevo Vehículo</button>
+
+<div *ngIf="showForm()">
+  <app-vehiculo-form (created)="onCreated($event)"></app-vehiculo-form>
+</div>
+
+<div *ngIf="loading()">Cargando...</div>
+<div *ngIf="error()">Error: {{error()}}</div>
+
+<table *ngIf="!loading()">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Chasis</th>
+      <th>Marca</th>
+      <th>Año</th>
+      <th>Modelo</th>
+      <th>Color</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let v of vehiculos()">
+      <td>{{v.IDvehiculo}}</td>
+      
+      <td *ngIf="editingId !== v.IDvehiculo">{{v.Chasis}}</td>
+      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Chasis" /></td>
+
+      <td *ngIf="editingId !== v.IDvehiculo">{{v.Marca}}</td>
+      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Marca" /></td>
+
+      <td *ngIf="editingId !== v.IDvehiculo">{{v.Anio}}</td>
+      <td *ngIf="editingId === v.IDvehiculo"><input type="number" [(ngModel)]="editModel.Anio" /></td>
+
+      <td *ngIf="editingId !== v.IDvehiculo">{{v.Modelo}}</td>
+      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Modelo" /></td>
+
+      <td *ngIf="editingId !== v.IDvehiculo">{{v.Color}}</td>
+      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Color" /></td>
+
+      <td>
+        <button *ngIf="editingId !== v.IDvehiculo" (click)="startEdit(v)">Editar</button>
+        <button *ngIf="editingId === v.IDvehiculo" (click)="saveEdit(v.IDvehiculo)">Guardar</button>
+        <button *ngIf="editingId === v.IDvehiculo" (click)="cancelEdit()">Cancelar</button>
+        <button (click)="deleteVehiculo(v.IDvehiculo)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

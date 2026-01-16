@@ -8,6 +8,8 @@ import { ClienteDetallesComponent } from './pages/Cliente-Detalles/Cliente-Detal
 import { FormularioComponent } from './pages/Formulario/Formulario.component';
 import { ClientesPageComponent } from './pages/clientes/clientes-page.component';
 import { DetalleFactura } from './DetalleFactura/DetalleFactura';
+import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
+import { FacturasComponent } from './pages/facturas/facturas.component';
 
 
 export const routes: Routes = [
@@ -20,6 +22,8 @@ export const routes: Routes = [
     {path: 'Formulario', component: FormularioComponent},
     {path: 'clientes', component: ClientesPageComponent},
     {path: 'Detallefactura', component: DetalleFactura},
+    {path: 'vehiculos', component: VehiculosComponent},
+    {path: 'facturas', component: FacturasComponent},
     {path: '**',redirectTo: ''},
 
 

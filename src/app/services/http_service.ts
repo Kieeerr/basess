@@ -10,12 +10,46 @@ export class HttpService {
   apiUrl = 'https://localhost:7094/api';
   constructor(private http: HttpClient) { }
 
+  // Facturas CRUD
   ObtenerFacturas() {
     return firstValueFrom(
-      this.http.get<any>(this.apiUrl + '/Facturas')
-    )
+      this.http.get(this.apiUrl + '/Facturas', { responseType: 'text' })
+    ).then(res => {
+      try { return JSON.parse(res as string); } catch { return res; }
+    });
   }
 
+  CrearFactura(formValue: any) {
+    const payload = {
+      IDcliente: formValue.IDcliente,
+      IDmdp: formValue.IDmdp,
+      Total: formValue.Total,
+      Fecha: formValue.Fecha
+    };
+    return firstValueFrom(
+      this.http.post<any>(this.apiUrl + '/Facturas', payload)
+    );
+  }
+
+  ActualizarFactura(id: any, data: any) {
+    const payload = {
+      IDcliente: data.IDcliente,
+      IDmdp: data.IDmdp,
+      Total: data.Total,
+      Fecha: data.Fecha
+    };
+    return firstValueFrom(
+      this.http.put<any>(this.apiUrl + '/Facturas/' + id, payload)
+    );
+  }
+
+  EliminarFactura(id: any) {
+    return firstValueFrom(
+      this.http.delete<any>(this.apiUrl + '/Facturas/' + id)
+    );
+  }
+
+  // Clientes
   ObtenerClientes() {
     return firstValueFrom(
       this.http.get(this.apiUrl + '/clientes', { responseType: 'text' })
@@ -67,7 +101,7 @@ export class HttpService {
       IDvehiculo: data.IDvehiculo,
       Descripcion: data.Descripcion,
       Cantidad: data.Cantidad,
-      Total: data.Total
+      Total: data.Total3
     };
     return firstValueFrom(
       this.http.put<any>(this.apiUrl + '/DetallesFacturas/' + id, payload)
@@ -110,6 +144,55 @@ export class HttpService {
   EliminarCliente(id: any) {
     return firstValueFrom(
       this.http.delete<any>(this.apiUrl + '/clientes/' + id)
+    );
+  }
+
+  // Vehiculos CRUD
+  ObtenerVehiculos() {
+    return firstValueFrom(
+      this.http.get(this.apiUrl + '/test', { responseType: 'text' })
+    ).then(res => {
+      try { return JSON.parse(res as string); } catch { return res; }
+    });
+  }
+
+  ObtenerVehiculoPorId(id: any) {
+    return firstValueFrom(
+      this.http.get(this.apiUrl + '/test/' + id, { responseType: 'text' })
+    ).then(res => {
+      try { return JSON.parse(res as string); } catch { return res; }
+    });
+  }
+
+  CrearVehiculo(formValue: any) {
+    const payload = {
+      Chasis: formValue.Chasis,
+      Marca: formValue.Marca,
+      Anio: formValue.Anio,
+      Modelo: formValue.Modelo,
+      Color: formValue.Color
+    };
+    return firstValueFrom(
+      this.http.post<any>(this.apiUrl + '/test', payload)
+    );
+  }
+
+  ActualizarVehiculo(id: any, data: any) {
+    const payload = {
+      Chasis: data.Chasis,
+      Marca: data.Marca,
+      Anio: data.Anio,
+      Modelo: data.Modelo,
+      Color: data.Color
+    };
+    return firstValueFrom(
+      this.http.put<any>(this.apiUrl + '/test/' + id, payload)
+    );
+  }
+
+  EliminarVehiculo(id: any) {
+    return firstValueFrom(
+      this.http.delete<any>(this.apiUrl + '/test/' + id)
     );
   }
 }

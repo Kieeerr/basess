@@ -1,0 +1,25 @@
+<h1>Formulario De Vehículos</h1>,
+ 
+<form [formGroup]="VehiculoForm" (ngSubmit)="handleSubmit()">
+    <fieldset>
+        <label>Chasis</label>
+        <input type="text" formControlName="Chasis" id="Chasis" />
+    </fieldset>
+    <fieldset>
+        <label>Marca</label>
+        <input type="text" formControlName="Marca" id="Marca" />
+    </fieldset>
+    <fieldset>
+        <label>Año</label>
+        <input type="number" formControlName="Anio" id="Anio" />
+    </fieldset>
+    <fieldset>
+        <label>Modelo</label>
+        <input type="text" formControlName="Modelo" id="Modelo" />
+    </fieldset>
+    <fieldset>
+        <label>Color</label>
+        <input type="text" formControlName="Color" id="Color" />
+    </fieldset>
+    <button type="submit">Crear vehículo</button>
+</form> 

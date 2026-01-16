@@ -1,0 +1,21 @@
+<h1>Formulario De Facturas</h1>,
+ 
+<form [formGroup]="FacturaForm" (ngSubmit)="handleSubmit()">
+    <fieldset>
+        <label>ID Cliente</label>
+        <input type="number" formControlName="IDcliente" id="ID-Cliente" />
+    </fieldset>
+    <fieldset>
+        <label>ID MDP</label>
+        <input type="number" formControlName="IDmdp" id="ID-MDP" />
+    </fieldset>
+    <fieldset>
+        <label>Total</label>
+        <input type="number" formControlName="Total" id="Total" />
+    </fieldset>
+    <fieldset>
+        <label>Fecha</label>
+        <input type="date" formControlName="Fecha" id="Fecha" />
+    </fieldset>
+    <button type="submit">Crear factura</button>
+</form> 
