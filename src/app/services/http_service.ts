@@ -34,8 +34,50 @@ export class HttpService {
   
   ObtenerDetalleFactura() {
     return firstValueFrom(
-      this.http.get<any>(this.apiUrl + '/DetallesFacturas')
-    )
+      this.http.get(this.apiUrl + '/DetallesFacturas', { responseType: 'text' })
+    ).then(res => {
+      try { return JSON.parse(res as string); } catch { return res; }
+    });
+  }
+
+  ObtenerDetalleFacturaPorId(id: any) {
+    return firstValueFrom(
+      this.http.get(this.apiUrl + '/DetallesFacturas/' + id, { responseType: 'text' })
+    ).then(res => {
+      try { return JSON.parse(res as string); } catch { return res; }
+    });
+  }
+
+  CrearDetalleFactura(formValue: any) {
+    const payload = {
+      IDfacturas: formValue.IDfacturas,
+      IDvehiculo: formValue.IDvehiculo,
+      Descripcion: formValue.Descripcion,
+      Cantidad: formValue.Cantidad,
+      Total: formValue.Total
+    };
+    return firstValueFrom(
+      this.http.post<any>(this.apiUrl + '/DetallesFacturas', payload)
+    );
+  }
+
+  ActualizarDetalleFactura(id: any, data: any) {
+    const payload = {
+      IDfacturas: data.IDfacturas,
+      IDvehiculo: data.IDvehiculo,
+      Descripcion: data.Descripcion,
+      Cantidad: data.Cantidad,
+      Total: data.Total
+    };
+    return firstValueFrom(
+      this.http.put<any>(this.apiUrl + '/DetallesFacturas/' + id, payload)
+    );
+  }
+
+  EliminarDetalleFactura(id: any) {
+    return firstValueFrom(
+      this.http.delete<any>(this.apiUrl + '/DetallesFacturas/' + id)
+    );
   }
   
   CrearCliente(formValue: any) {

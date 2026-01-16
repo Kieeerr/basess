@@ -1,0 +1,25 @@
+<h1>Formulario De Detalles de Factura</h1>,
+ 
+<form [formGroup]="DetalleFacturaForm" (ngSubmit)="handleSubmit()">
+    <fieldset>
+        <label>ID Factura</label>
+        <input type="number" formControlName="IDfacturas" id="ID-Factura" />
+    </fieldset>
+    <fieldset>
+        <label>ID Vehículo</label>
+        <input type="number" formControlName="IDvehiculo" id="ID-Vehiculo" />
+    </fieldset>
+    <fieldset>
+        <label>Descripción</label>
+        <input type="text" formControlName="Descripcion" id="Descripcion" />
+    </fieldset>
+    <fieldset>
+        <label>Cantidad</label>
+        <input type="number" formControlName="Cantidad" id="Cantidad" />
+    </fieldset>
+    <fieldset>
+        <label>Total</label>
+        <input type="number" formControlName="Total" id="Total" />
+    </fieldset>
+    <button type="submit">Crear detalle</button>
+</form> 
