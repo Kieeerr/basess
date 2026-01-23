@@ -10,7 +10,7 @@ export class HttpService {
   apiUrl = 'https://localhost:7094/api';
   constructor(private http: HttpClient) { }
 
-  // Facturas CRUD
+
   ObtenerFacturas() {
     return firstValueFrom(
       this.http.get(this.apiUrl + '/Facturas', { responseType: 'text' })
@@ -49,7 +49,7 @@ export class HttpService {
     );
   }
 
-  // Clientes
+
   ObtenerClientes() {
     return firstValueFrom(
       this.http.get(this.apiUrl + '/clientes', { responseType: 'text' })
@@ -146,7 +146,7 @@ export class HttpService {
     );
   }
 
-  // Vehiculos CRUD
+  
   ObtenerVehiculos() {
     return firstValueFrom(
       this.http.get(this.apiUrl + '/test', { responseType: 'text' })
@@ -193,5 +193,14 @@ export class HttpService {
     return firstValueFrom(
       this.http.delete<any>(this.apiUrl + '/test/' + id)
     );
+  }
+
+
+  ObtenerFacturasConDetalle() {
+    return firstValueFrom(
+      this.http.get(this.apiUrl + '/FacturasConDetalle', { responseType: 'text' })
+    ).then(res => {
+      try { return JSON.parse(res as string); } catch { return res; }
+    });
   }
 }

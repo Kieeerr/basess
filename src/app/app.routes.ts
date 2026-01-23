@@ -10,6 +10,7 @@ import { ClientesPageComponent } from './pages/clientes/clientes-page.component'
 import { DetalleFactura } from './DetalleFactura/DetalleFactura';
 import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 import { FacturasComponent } from './pages/facturas/facturas.component';
+import { FacturasConDetalleComponent } from './pages/facturas-con-detalle/facturas-con-detalle.component';
 
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
     {path: 'Detallefactura', component: DetalleFactura},
     {path: 'vehiculos', component: VehiculosComponent},
     {path: 'facturas', component: FacturasComponent},
+    {path: 'facturas-con-detalle', component: FacturasConDetalleComponent},
     {path: '**',redirectTo: ''},
 
 

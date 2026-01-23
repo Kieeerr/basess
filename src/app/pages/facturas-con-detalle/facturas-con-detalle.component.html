@@ -1,0 +1,29 @@
+<h1>Facturas Con Detalle Completo</h1>
+
+<div *ngIf="loading()">Cargando...</div>
+<div *ngIf="error()">Error: {{error()}}</div>
+
+<table *ngIf="!loading()">
+  <thead>
+    <tr>
+      <th>ID Factura</th>
+      <th>Total Factura</th>
+      <th>Fecha</th>
+      <th>ID Vehículo</th>
+      <th>Descripción</th>
+      <th>Cantidad</th>
+      <th>Total Detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let f of facturasConDetalle()">
+      <td>{{f.IDfacturas}}</td>
+      <td>{{f.TotalFactura}}</td>
+      <td>{{f.Fecha | date}}</td>
+      <td>{{f.IDvehiculo}}</td>
+      <td>{{f.Descripcion}}</td>
+      <td>{{f.Cantidad}}</td>
+      <td>{{f.TotalDetalle}}</td>
+    </tr>
+  </tbody>
+</table>
