@@ -1,40 +1,73 @@
 <style>
-nav{
-    display: flex;
-    background-color: rgb(38, 65, 65);
-    color: rgb(145, 149, 141);
-    padding: 15px;
-    justify-content: space-around;
+    .navbar-dark .navbar-nav .nav-link.active {
+    color: #ffc107 !important;
+    font-weight: 600;
 }
-nav a{
-    color: white;
-    text-decoration: none;
-}
-
-nav a.active{
- color: gold;
-}
-
 </style>
 
-<nav> 
-    <a routerLink="/" 
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{exact: true}"
-    >Contador</a>
-    
-    
-    <a routerLink="/hero" [routerLinkActive]="'active'" >heroe</a>
-
-    <a routerLink="/dragonball" [routerLinkActive]="'active'" >Dragonball</a>
-
-    <a routerLink="/dragonball-super" routerLinkActive="'active'" >Dragonball Super</a>
-    
-    <a routerLink="/Test1" routerLinkActive="'active'" >Test1</a>   
-    <a routerLink="/clientes" routerLinkActive="active"> Clientes</a>
-    <a routerLink="/Detallefactura" routerLinkActive="active">Detalle factura</a>
-    <a routerLink="/vehiculos" routerLinkActive="active">Vehiculos</a>
-    <a routerLink="/facturas" routerLinkActive="active">Facturas</a>
-    <a routerLink="/facturas-con-detalle" routerLinkActive="active">Vista Detallada </a>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" routerLink="/">
+            <i class="bi bi-code-square"></i> Testeo durisimo       
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/" 
+                       routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact: true}">
+                        Contador
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/hero" routerLinkActive="active">
+                        Héroe
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/dragonball" routerLinkActive="active">
+                        Dragonball
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/dragonball-super" routerLinkActive="active">
+                        Dragonball Super
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Test1" routerLinkActive="active">
+                        Test1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/clientes" routerLinkActive="active">
+                        Clientes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Detallefactura" routerLinkActive="active">
+                        Detalle Factura
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/vehiculos" routerLinkActive="active">
+                        Vehículos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/facturas" routerLinkActive="active">
+                        Facturas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/facturas-con-detalle" routerLinkActive="active">
+                        Vista Detallada
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>

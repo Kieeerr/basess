@@ -1,25 +1,53 @@
-<h1>Formulario De Clientes</h1>,
- 
-<form [formGroup]="ClientesForm" (ngSubmit)="handleSubmit()">
-    <fieldset>
-        <label>Nombre</label>
-        <input type="text" formControlName="Nombre" id="Nombre-Cliente" />
-    </fieldset>
-    <fieldset>
-        <label>Apellido</label>
-        <input type="text" formControlName="Apellido" id="Apellido" />
-    </fieldset>
-    <fieldset>
-        <label>Correo</label>
-        <input type="text" formControlName="Correo" id="Correo" />
-    </fieldset>
-    <fieldset>
-        <label>Telefono</label>
-        <input type="text" formControlName="Telefono" id="Telefono" />
-    </fieldset>
-    <fieldset>
-        <label>Fecha De Nacimiento</label>
-        <input type="date" formControlName="FechaNacimiento" id="FechaNacimiento" />
-    </fieldset>
-    <button type="submit">Crear usuario</button>
-</form> 
+<div class="card-header bg-success text-white">
+    <h4 class="mb-0"><i class="bi bi-person-plus"></i> Formulario De Clientes</h4>
+</div>
+<div class="card-body">
+    <form [formGroup]="ClientesForm" (ngSubmit)="handleSubmit()">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="Nombre-Cliente" class="form-label fw-bold">Nombre</label>
+                <input type="text" 
+                             formControlName="Nombre" 
+                             id="Nombre-Cliente" 
+                             class="form-control" 
+                             placeholder="Nombre del cliente" />
+            </div>
+            <div class="col-md-6">
+                <label for="Apellido" class="form-label fw-bold">Apellido</label>
+                <input type="text" 
+                             formControlName="Apellido" 
+                             id="Apellido" 
+                             class="form-control" 
+                             placeholder="Apellido del cliente" />
+            </div>
+            <div class="col-md-6">
+                <label for="Correo" class="form-label fw-bold">Correo Electrónico</label>
+                <input type="email" 
+                             formControlName="Correo" 
+                             id="Correo" 
+                             class="form-control" 
+                             placeholder="ejemplo@correo.com" />
+            </div>
+            <div class="col-md-6">
+                <label for="Telefono" class="form-label fw-bold">Teléfono</label>
+                <input type="tel" 
+                             formControlName="Telefono" 
+                             id="Telefono" 
+                             class="form-control" 
+                             placeholder="(809) 000-0000" />
+            </div>
+            <div class="col-12">
+                <label for="FechaNacimiento" class="form-label fw-bold">Fecha De Nacimiento</label>
+                <input type="date" 
+                             formControlName="FechaNacimiento" 
+                             id="FechaNacimiento" 
+                             class="form-control" />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-check-circle"></i> Crear Cliente
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

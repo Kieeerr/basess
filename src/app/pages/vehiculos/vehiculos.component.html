@@ -1,51 +1,105 @@
-<h1>Vehículos</h1>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary"><i class="bi bi-truck"></i> Vehículos</h1>
+        <button class="btn btn-success btn-lg" (click)="toggleForm()">
+          <i class="bi bi-plus-circle"></i> Nuevo Vehículo
+        </button>
+      </div>
 
-<button (click)="toggleForm()">Nuevo Vehículo</button>
+      <div *ngIf="showForm()" class="mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <app-vehiculo-form (created)="onCreated($event)"></app-vehiculo-form>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="showForm()">
-  <app-vehiculo-form (created)="onCreated($event)"></app-vehiculo-form>
-</div>
-
-<div *ngIf="loading()">Cargando...</div>
-<div *ngIf="error()">Error: {{error()}}</div>
-
-<table *ngIf="!loading()">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Chasis</th>
-      <th>Marca</th>
-      <th>Año</th>
-      <th>Modelo</th>
-      <th>Color</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let v of vehiculos()">
-      <td>{{v.IDvehiculo}}</td>
+      <div *ngIf="loading()" class="alert alert-info" role="alert">
+        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+        Cargando vehículos...
+      </div>
       
-      <td *ngIf="editingId !== v.IDvehiculo">{{v.Chasis}}</td>
-      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Chasis" /></td>
+      <div *ngIf="error()" class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle"></i> Error: {{error()}}
+      </div>
 
-      <td *ngIf="editingId !== v.IDvehiculo">{{v.Marca}}</td>
-      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Marca" /></td>
+      <div *ngIf="!loading()" class="card shadow-sm">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Chasis</th>
+                  <th>Marca</th>
+                  <th>Año</th>
+                  <th>Modelo</th>
+                  <th>Color</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let v of vehiculos()">
+                  <td class="fw-bold">{{v.IDvehiculo}}</td>
+                  
+                  <td *ngIf="editingId !== v.IDvehiculo">{{v.Chasis}}</td>
+                  <td *ngIf="editingId === v.IDvehiculo">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.Chasis" />
+                  </td>
 
-      <td *ngIf="editingId !== v.IDvehiculo">{{v.Anio}}</td>
-      <td *ngIf="editingId === v.IDvehiculo"><input type="number" [(ngModel)]="editModel.Anio" /></td>
+                  <td *ngIf="editingId !== v.IDvehiculo">{{v.Marca}}</td>
+                  <td *ngIf="editingId === v.IDvehiculo">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.Marca" />
+                  </td>
 
-      <td *ngIf="editingId !== v.IDvehiculo">{{v.Modelo}}</td>
-      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Modelo" /></td>
+                  <td *ngIf="editingId !== v.IDvehiculo">{{v.Anio}}</td>
+                  <td *ngIf="editingId === v.IDvehiculo">
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="editModel.Anio" />
+                  </td>
 
-      <td *ngIf="editingId !== v.IDvehiculo">{{v.Color}}</td>
-      <td *ngIf="editingId === v.IDvehiculo"><input [(ngModel)]="editModel.Color" /></td>
+                  <td *ngIf="editingId !== v.IDvehiculo">{{v.Modelo}}</td>
+                  <td *ngIf="editingId === v.IDvehiculo">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.Modelo" />
+                  </td>
 
-      <td>
-        <button *ngIf="editingId !== v.IDvehiculo" (click)="startEdit(v)">Editar</button>
-        <button *ngIf="editingId === v.IDvehiculo" (click)="saveEdit(v.IDvehiculo)">Guardar</button>
-        <button *ngIf="editingId === v.IDvehiculo" (click)="cancelEdit()">Cancelar</button>
-        <button (click)="deleteVehiculo(v.IDvehiculo)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+                  <td *ngIf="editingId !== v.IDvehiculo">
+                    <span class="badge rounded-pill bg-secondary">{{v.Color}}</span>
+                  </td>
+                  <td *ngIf="editingId === v.IDvehiculo">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.Color" />
+                  </td>
+
+                  <td class="text-center">
+                    <div class="btn-group" role="group">
+                      <button *ngIf="editingId !== v.IDvehiculo" 
+                              class="btn btn-sm btn-warning" 
+                              (click)="startEdit(v)">
+                        <i class="bi bi-pencil"></i> Editar
+                      </button>
+                      <button *ngIf="editingId === v.IDvehiculo" 
+                              class="btn btn-sm btn-success" 
+                              (click)="saveEdit(v.IDvehiculo)">
+                        <i class="bi bi-check-lg"></i> Guardar
+                      </button>
+                      <button *ngIf="editingId === v.IDvehiculo" 
+                              class="btn btn-sm btn-secondary" 
+                              (click)="cancelEdit()">
+                        <i class="bi bi-x-lg"></i> Cancelar
+                      </button>
+                      <button class="btn btn-sm btn-danger" 
+                              (click)="deleteVehiculo(v.IDvehiculo)">
+                        <i class="bi bi-trash"></i> Eliminar
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

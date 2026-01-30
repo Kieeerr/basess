@@ -1,25 +1,57 @@
-<h1>Formulario De Detalles de Factura</h1>,
- 
-<form [formGroup]="DetalleFacturaForm" (ngSubmit)="handleSubmit()">
-    <fieldset>
-        <label>ID Factura</label>
-        <input type="number" formControlName="IDfacturas" id="ID-Factura" />
-    </fieldset>
-    <fieldset>
-        <label>ID Vehículo</label>
-        <input type="number" formControlName="IDvehiculo" id="ID-Vehiculo" />
-    </fieldset>
-    <fieldset>
-        <label>Descripción</label>
-        <input type="text" formControlName="Descripcion" id="Descripcion" />
-    </fieldset>
-    <fieldset>
-        <label>Cantidad</label>
-        <input type="number" formControlName="Cantidad" id="Cantidad" />
-    </fieldset>
-    <fieldset>
-        <label>Total</label>
-        <input type="number" formControlName="Total" id="Total" />
-    </fieldset>
-    <button type="submit">Crear detalle</button>
-</form> 
+<div class="card-header bg-success text-white">
+    <h4 class="mb-0"><i class="bi bi-list-ul"></i> Formulario De Detalles de Factura</h4>
+</div>
+<div class="card-body">
+    <form [formGroup]="DetalleFacturaForm" (ngSubmit)="handleSubmit()">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="ID-Factura" class="form-label fw-bold">ID Factura</label>
+                <input type="number" 
+                             formControlName="IDfacturas" 
+                             id="ID-Factura" 
+                             class="form-control" 
+                             placeholder="ID de la factura" />
+            </div>
+            <div class="col-md-6">
+                <label for="ID-Vehiculo" class="form-label fw-bold">ID Vehículo</label>
+                <input type="number" 
+                             formControlName="IDvehiculo" 
+                             id="ID-Vehiculo" 
+                             class="form-control" 
+                             placeholder="ID del vehículo" />
+            </div>
+            <div class="col-12">
+                <label for="Descripcion" class="form-label fw-bold">Descripción</label>
+                <textarea formControlName="Descripcion" 
+                                    id="Descripcion" 
+                                    class="form-control" 
+                                    rows="3"
+                                    placeholder="Descripción del detalle"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="Cantidad" class="form-label fw-bold">Cantidad</label>
+                <input type="number" 
+                             formControlName="Cantidad" 
+                             id="Cantidad" 
+                             class="form-control" 
+                             placeholder="Cantidad" />
+            </div>
+            <div class="col-md-6">
+                <label for="Total" class="form-label fw-bold">Total</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" 
+                                 formControlName="Total" 
+                                 id="Total" 
+                                 class="form-control" 
+                                 placeholder="0.00" />
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-check-circle"></i> Crear Detalle
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

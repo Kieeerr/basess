@@ -1,50 +1,103 @@
-<h1>Clientes</h1>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary"><i class="bi bi-people"></i> Clientes</h1>
+        <button class="btn btn-success btn-lg" (click)="toggleForm()">
+          <i class="bi bi-plus-circle"></i> Nuevo Cliente
+        </button>
+      </div>
 
-<button (click)="toggleForm()">Nuevo Cliente</button>
+      <div *ngIf="showForm()" class="mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <app-formulario (created)="onCreated($event)"></app-formulario>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="showForm()">
-  <app-formulario (created)="onCreated($event)"></app-formulario>
+      <div *ngIf="loading()" class="alert alert-info" role="alert">
+        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+        Cargando clientes...
+      </div>
+      
+      <div *ngIf="error()" class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle"></i> Error: {{error()}}
+      </div>
+
+      <div *ngIf="!loading()" class="card shadow-sm">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Correo</th>
+                  <th>Teléfono</th>
+                  <th>Fecha Nac.</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of clientes()">
+                  <td class="fw-bold">{{c.IDcliente}}</td>
+                  
+                  <td *ngIf="editingId !== c.IDcliente">{{c.Nombre}}</td>
+                  <td *ngIf="editingId === c.IDcliente">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.Nombre" />
+                  </td>
+
+                  <td *ngIf="editingId !== c.IDcliente">{{c.apellido}}</td>
+                  <td *ngIf="editingId === c.IDcliente">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.apellido" />
+                  </td>
+
+                  <td *ngIf="editingId !== c.IDcliente">{{c.Correo}}</td>
+                  <td *ngIf="editingId === c.IDcliente">
+                    <input type="email" class="form-control form-control-sm" [(ngModel)]="editModel.Correo" />
+                  </td>
+
+                  <td *ngIf="editingId !== c.IDcliente">{{c.Telefono}}</td>
+                  <td *ngIf="editingId === c.IDcliente">
+                    <input type="tel" class="form-control form-control-sm" [(ngModel)]="editModel.Telefono" />
+                  </td>
+
+                  <td *ngIf="editingId !== c.IDcliente">{{c.Fecha_Nacimiento}}</td>
+                  <td *ngIf="editingId === c.IDcliente">
+                    <input type="date" class="form-control form-control-sm" [(ngModel)]="editModel.Fecha_Nacimiento" />
+                  </td>
+
+                  <td class="text-center">
+                    <div class="btn-group" role="group">
+                      <button *ngIf="editingId !== c.IDcliente" 
+                              class="btn btn-sm btn-warning" 
+                              (click)="startEdit(c)">
+                        <i class="bi bi-pencil"></i> Editar
+                      </button>
+                      <button *ngIf="editingId === c.IDcliente" 
+                              class="btn btn-sm btn-success" 
+                              (click)="saveEdit(c.IDcliente)">
+                        <i class="bi bi-check-lg"></i> Guardar
+                      </button>
+                      <button *ngIf="editingId === c.IDcliente" 
+                              class="btn btn-sm btn-secondary" 
+                              (click)="cancelEdit()">
+                        <i class="bi bi-x-lg"></i> Cancelar
+                      </button>
+                      <button class="btn btn-sm btn-danger" 
+                              (click)="deleteCliente(c.IDcliente)">
+                        <i class="bi bi-trash"></i> Eliminar
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div *ngIf="loading()">Cargando...</div>
-<div *ngIf="error()">Error: {{error()}}</div>
-
-<table *ngIf="!loading()">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Correo</th>
-      <th>Telefono</th>
-      <th>Fecha Nac.</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of clientes()">
-      <td>{{c.IDcliente}}</td>
-      <td *ngIf="editingId !== c.IDcliente">{{c.Nombre}}</td>
-      <td *ngIf="editingId === c.IDcliente"><input [(ngModel)]="editModel.Nombre" /></td>
-
-      <td *ngIf="editingId !== c.IDcliente">{{c.apellido}}</td>
-      <td *ngIf="editingId === c.IDcliente"><input [(ngModel)]="editModel.apellido" /></td>
-
-      <td *ngIf="editingId !== c.IDcliente">{{c.Correo}}</td>
-      <td *ngIf="editingId === c.IDcliente"><input [(ngModel)]="editModel.Correo" /></td>
-
-      <td *ngIf="editingId !== c.IDcliente">{{c.Telefono}}</td>
-      <td *ngIf="editingId === c.IDcliente"><input [(ngModel)]="editModel.Telefono" /></td>
-
-      <td *ngIf="editingId !== c.IDcliente">{{c.Fecha_Nacimiento | date}}</td>
-      <td *ngIf="editingId === c.IDcliente"><input type="date" [(ngModel)]="editModel.Fecha_Nacimiento" /></td>
-
-      <td>
-        <button *ngIf="editingId !== c.IDcliente" (click)="startEdit(c)">Editar</button>
-        <button *ngIf="editingId === c.IDcliente" (click)="saveEdit(c.IDcliente)">Guardar</button>
-        <button *ngIf="editingId === c.IDcliente" (click)="cancelEdit()">Cancelar</button>
-        <button (click)="deleteCliente(c.IDcliente)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>

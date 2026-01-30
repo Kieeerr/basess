@@ -1,25 +1,54 @@
-<h1>Formulario De Vehículos</h1>,
- 
-<form [formGroup]="VehiculoForm" (ngSubmit)="handleSubmit()">
-    <fieldset>
-        <label>Chasis</label>
-        <input type="text" formControlName="Chasis" id="Chasis" />
-    </fieldset>
-    <fieldset>
-        <label>Marca</label>
-        <input type="text" formControlName="Marca" id="Marca" />
-    </fieldset>
-    <fieldset>
-        <label>Año</label>
-        <input type="number" formControlName="Anio" id="Anio" />
-    </fieldset>
-    <fieldset>
-        <label>Modelo</label>
-        <input type="text" formControlName="Modelo" id="Modelo" />
-    </fieldset>
-    <fieldset>
-        <label>Color</label>
-        <input type="text" formControlName="Color" id="Color" />
-    </fieldset>
-    <button type="submit">Crear vehículo</button>
-</form> 
+<div class="card-header bg-success text-white">
+    <h4 class="mb-0"><i class="bi bi-truck"></i> Formulario De Vehículos</h4>
+</div>
+<div class="card-body">
+    <form [formGroup]="VehiculoForm" (ngSubmit)="handleSubmit()">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="Chasis" class="form-label fw-bold">Chasis</label>
+                <input type="text" 
+                             formControlName="Chasis" 
+                             id="Chasis" 
+                             class="form-control" 
+                            />
+            </div>
+            <div class="col-md-6">
+                <label for="Marca" class="form-label fw-bold">Marca</label>
+                <input type="text" 
+                             formControlName="Marca" 
+                             id="Marca" 
+                             class="form-control" 
+                            />
+            </div>
+            <div class="col-md-4">
+                <label for="Anio" class="form-label fw-bold">Año</label>
+                <input type="number" 
+                             formControlName="Anio" 
+                             id="Anio" 
+                             class="form-control" 
+                            />
+            </div>
+            <div class="col-md-4">
+                <label for="Modelo" class="form-label fw-bold">Modelo</label>
+                <input type="text" 
+                             formControlName="Modelo" 
+                             id="Modelo" 
+                             class="form-control" 
+                           />
+            </div>
+            <div class="col-md-4">
+                <label for="Color" class="form-label fw-bold">Color</label>
+                <input type="text" 
+                             formControlName="Color" 
+                             id="Color" 
+                             class="form-control" 
+                            />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="bi bi-check-circle"></i> Crear Vehículo
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

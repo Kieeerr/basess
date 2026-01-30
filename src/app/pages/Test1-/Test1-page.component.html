@@ -1,45 +1,62 @@
-<h1>Holaaaaaa</h1>
-<br>
-<br>
-<button (click)="getPostCliente()"> Clientes</button>
-<button (click)="getPostDetalleFactura()">DetalleFactura</button>
-<style>
-    ul{
-        font-size: 12px;
-        letter-spacing: 0.5px;
-    }
-</style>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-5 fw-bold text-primary mb-4">Panel de Datos</h1>
+            <div class="mb-3">
+                <button (click)="getPostCliente()" class="btn btn-primary me-2">
+                    <i class="bi bi-people"></i> Cargar Clientes
+                </button>
+                <button (click)="getPostDetalleFactura()" class="btn btn-info text-white">
+                    <i class="bi bi-file-text"></i> Cargar Detalle Factura
+                </button>
+            </div>
+        </div>
+    </div>
 
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-people-fill"></i> Clientes</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @for (item of postClientes; track $index) {
+                            <li class="list-group-item">
+                                <a (click)="goToCliente(item.IDcliente)" 
+                                   class="text-decoration-none text-primary" 
+                                   style="cursor:pointer;">
+                                    <i class="bi bi-person-circle"></i> 
+                                    <strong>{{item.IDcliente}}</strong> - {{item.Nombre}}
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-<div style=" color: rgb(136, 154, 205);">
-<ul style="position: absolute; left: 10px;">
-    @for (item of postClientes; track $index) {
-        <li>
-            <a (click)="goToCliente(item.IDcliente)" style="cursor:pointer; color:inherit; text-decoration:none;">
-            {{item.IDcliente}}, {{item.Nombre}}
+      
 
-            </a>
-        </li>
-    }
-</ul>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="bi bi-list-check"></i> Detalle Facturas</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @for (item of postsDetalleFactura; track $index) {
+                            <li class="list-group-item">
+                                <span class="badge bg-info">{{item.IDfacturas}}</span> 
+                                {{item.Descripcion}}
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div style="color: chocolate;">
-    <ul style="position:absolute; left: 110px;">
-           @for (item of postFacturas; track $index){
-            <li>{{item.IDcliente}}, {{item.Fecha}}</li>
-        }
-    </ul>
-</div>
-
-<ul style="position: absolute;left: 350px;">
-    @for (item of postsDetalleFactura; track $index) {
-        <li>
-            {{item.IDfacturas}}, {{item.Descripcion}}
-        </li>
-
-    }
-</ul>
 
 
 

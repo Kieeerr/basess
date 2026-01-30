@@ -1,47 +1,97 @@
-<h1>Detalles de Facturas</h1>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary"><i class="bi bi-list-check"></i> Detalles de Facturas</h1>
+        <button class="btn btn-success btn-lg" (click)="toggleForm()">
+          <i class="bi bi-plus-circle"></i> Nuevo Detalle
+        </button>
+      </div>
 
-<button (click)="toggleForm()">Nuevo Detalle</button>
+      <div *ngIf="showForm()" class="mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <app-detalle-factura-form (created)="onCreated($event)"></app-detalle-factura-form>
+          </div>
+        </div>
+      </div>
 
-<div *ngIf="showForm()">
-  <app-detalle-factura-form (created)="onCreated($event)"></app-detalle-factura-form>
-</div>
-
-<div *ngIf="loading()">Cargando...</div>
-<div *ngIf="error()">Error: {{error()}}</div>
-
-<table *ngIf="!loading()">
-  <thead>
-    <tr>
-      <th>ID Factura</th>
-      <th>ID Vehículo</th>
-      <th>Descripción</th>
-      <th>Cantidad</th>
-      <th>Total</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of detalles()">
-      <td>{{d.IDfacturas}}</td>
+      <div *ngIf="loading()" class="alert alert-info" role="alert">
+        <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+        Cargando detalles...
+      </div>
       
-      <td *ngIf="editingId !== d.IDfacturas">{{d.IDvehiculo}}</td>
-      <td *ngIf="editingId === d.IDfacturas"><input type="number" [(ngModel)]="editModel.IDvehiculo" /></td>
+      <div *ngIf="error()" class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle"></i> Error: {{error()}}
+      </div>
 
-      <td *ngIf="editingId !== d.IDfacturas">{{d.Descripcion}}</td>
-      <td *ngIf="editingId === d.IDfacturas"><input [(ngModel)]="editModel.Descripcion" /></td>
+      <div *ngIf="!loading()" class="card shadow-sm">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID Factura</th>
+                  <th>ID Vehículo</th>
+                  <th>Descripción</th>
+                  <th>Cantidad</th>
+                  <th>Total</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of detalles()">
+                  <td class="fw-bold">{{d.IDfacturas}}</td>
+                  
+                  <td *ngIf="editingId !== d.IDfacturas">{{d.IDvehiculo}}</td>
+                  <td *ngIf="editingId === d.IDfacturas">
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="editModel.IDvehiculo" />
+                  </td>
 
-      <td *ngIf="editingId !== d.IDfacturas">{{d.Cantidad}}</td>
-      <td *ngIf="editingId === d.IDfacturas"><input type="number" [(ngModel)]="editModel.Cantidad" /></td>
+                  <td *ngIf="editingId !== d.IDfacturas">{{d.Descripcion}}</td>
+                  <td *ngIf="editingId === d.IDfacturas">
+                    <input class="form-control form-control-sm" [(ngModel)]="editModel.Descripcion" />
+                  </td>
 
-      <td *ngIf="editingId !== d.IDfacturas">{{d.Total}}</td>
-      <td *ngIf="editingId === d.IDfacturas"><input type="number" [(ngModel)]="editModel.Total" /></td>
+                  <td *ngIf="editingId !== d.IDfacturas">{{d.Cantidad}}</td>
+                  <td *ngIf="editingId === d.IDfacturas">
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="editModel.Cantidad" />
+                  </td>
 
-      <td>
-        <button *ngIf="editingId !== d.IDfacturas" (click)="startEdit(d)">Editar</button>
-        <button *ngIf="editingId === d.IDfacturas" (click)="saveEdit(d.IDfacturas)">Guardar</button>
-        <button *ngIf="editingId === d.IDfacturas" (click)="cancelEdit()">Cancelar</button>
-        <button (click)="deleteDetalle(d.IDfacturas)">Eliminar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+                  <td *ngIf="editingId !== d.IDfacturas" class="fw-bold text-success">{{d.Total}}</td>
+                  <td *ngIf="editingId === d.IDfacturas">
+                    <input type="number" class="form-control form-control-sm" [(ngModel)]="editModel.Total" />
+                  </td>
+
+                  <td class="text-center">
+                    <div class="btn-group" role="group">
+                      <button *ngIf="editingId !== d.IDfacturas" 
+                              class="btn btn-sm btn-warning" 
+                              (click)="startEdit(d)">
+                        <i class="bi bi-pencil"></i> Editar
+                      </button>
+                      <button *ngIf="editingId === d.IDfacturas" 
+                              class="btn btn-sm btn-success" 
+                              (click)="saveEdit(d.IDfacturas)">
+                        <i class="bi bi-check-lg"></i> Guardar
+                      </button>
+                      <button *ngIf="editingId === d.IDfacturas" 
+                              class="btn btn-sm btn-secondary" 
+                              (click)="cancelEdit()">
+                        <i class="bi bi-x-lg"></i> Cancelar
+                      </button>
+                      <button class="btn btn-sm btn-danger" 
+                              (click)="deleteDetalle(d.IDfacturas)">
+                        <i class="bi bi-trash"></i> Eliminar
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
